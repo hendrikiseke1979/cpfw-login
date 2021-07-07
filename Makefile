@@ -13,7 +13,7 @@ test: .get-deps *.go
 
 clean:
 	rm -f .get-deps
-	rm -f *_amd64 *_darwin
+	rm -f *_amd64 *_darwin *.exe
 
 cpfw-login_amd64: .get-deps *.go
 	 GOOS=linux GOARCH=amd64 go build -o $@ .
