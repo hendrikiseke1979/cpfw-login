@@ -2,7 +2,7 @@
 
 VERSION=$(shell git rev-parse HEAD)
 
-build: cpfw-login_amd64 cpfw-login_darwin cpfw-login.exe
+build: cpfw-login_amd64 cpfw-login_darwin cpfw-login.exe cpfw-login_arm64
 
 test: .get-deps *.go
 	go test -v
@@ -13,7 +13,7 @@ test: .get-deps *.go
 
 clean:
 	rm -f .get-deps
-	rm -f *_amd64 *_darwin *.exe
+	rm -f *_amd64 *_darwin *.exe *_raspi4
 
 cpfw-login_amd64: .get-deps *.go
 	 GOOS=linux GOARCH=amd64 go build -o $@ .
@@ -23,3 +23,6 @@ cpfw-login_darwin: .get-deps *.go
 
 cpfw-login.exe: .get-deps *.go
 	 GOOS=windows GOARCH=amd64 go build -o $@ .
+
+cpfw-login_arm64: .get-deps *.go
+	 GOOS=linux GOARCH=arm64 go build -o $@ .
